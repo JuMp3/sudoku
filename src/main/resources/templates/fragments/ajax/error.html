@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:dt="http://github.com/dandelion/datatables"
+      xmlns:ddl="http://www.thymeleaf.org/dandelion">
+
+    <body>
+
+        <div id="error" layout:fragment="error">
+            <div th:if="${profile!='prod'}" th:text="'PATH='+${path}"></div>
+            <div th:text="'STATUS='+${status}"></div>
+            <div th:text="'ERROR='+${error}"></div>
+            <div th:text="'TIMESTAMP='+${timestamp}"></div>
+            <div th:if="${profile!='prod'}" th:text="'CAUSE='+${cause}"></div>
+            <div th:if="${profile!='prod'}" th:text="'MESSAGE='+${message}"></div>
+            <div th:if="${profile!='prod'}" th:text="'EXCEPTION='+${exception}"></div>
+            <div th:if="${profile!='prod'}" th:text="'TRACE='+${trace}"></div>
+        </div>
+
+    </body>
+</html>

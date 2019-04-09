@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <title>Home</title>
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.3.1/jquery.min.js/}"></script>
+    <script type="text/javascript" th:src="@{/js/sudoku.js}"></script>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <div>
+        <section th:replace="fragments/components/alert :: alert"></section>
+    </div>
+
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="panel panel-sudoku">
+                <div layout:insert="~{fragments/components/box :: box('box-table', true, false)}" th:remove="tag">
+                    <th:block layout:fragment="box-header">
+                        <h2 class="box-title with-margin text-lg-center" th:text="#{webapp.name}"
+                            style="padding: 20px;"/>
+                    </th:block>
+                    <th:block layout:fragment="box-body">
+
+                        <form th:id="sudokuForm" th:action="@{/sudoku/solve}" th:object="${sudokuTable}" method="post" role="form">
+                        <!--<form th:id="sudokuForm" th:object="${sudokuTable}" role="form">-->
+                            <table role="grid" class="table table-bordered table-sudoku center" cellspacing="0">
+                                <tbody>
+                                <tr th:each="row, y : *{rows}" th:field="*{rows}">
+                                    <td role="gridcell" th:each="column, x : ${row.columns}">
+                                        <!--<p th:if="${column.cell != 0}" th:text="${column.cell}" th:value="${column.cell}"-->
+                                           <!--th:id="${x.index + '_' + y.index}"></p>-->
+                                        <input th:if="${column.cell != 0}" th:id="${x.index + '_' + y.index}"
+                                               maxlength="1" size="1" min="1" max="9" th:value="${column.cell}" disabled/>
+                                        <input th:if="${column.cell == 0}" th:id="${x.index + '_' + y.index}"
+                                               maxlength="1" size="1" min="1" max="9"/>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="form-group">
+                                <span class="error center" th:if="${#fields.hasErrors('errMsg')}"
+                                      th:errors="*{errMsg}">Completare tutti i campi!</span>
+                            </div>
+                            <div th:if="${!solved}" class="row">
+                                <div class="col-sm-4 col-sm-offset-3 center">
+                                    <button type="button" th:id="sudokuReset" class="form-control btn btn-secondary">
+                                        <span>Reset</span>
+                                    </button>
+                                </div>
+                                <div class="col-sm-4 col-sm-offset-3 center">
+                                    <button type="button" th:id="sudokuSubmit" class="form-control btn btn-info">
+                                        <span th:text="#{btnValuate}"/>
+                                    </button>
+                                </div>
+                                <div class="col-sm-4 col-sm-offset-3 center">
+                                    <button type="button" th:id="sudokuHelp" class="form-control btn btn-primary">
+                                        <span th:text="#{btnHelp}"/>
+                                    </button>
+                                </div>
+                            </div>
+                            <br>
+                            <div th:if="${!solved}" class="row">
+                                <div class="col-sm-12 col-sm-offset-3 center">
+                                    <button type="submit" th:id="sudokuSolve" class="form-control btn btn-success">
+                                        <span th:text="#{btnSolve}"/>
+                                    </button>
+                                </div>
+                            </div>
+                            <br/>
+                            <input type="hidden" th:id="checkSolved" th:value="${solved}">
+                            <input type="hidden" th:field="*{boardId}" th:value="*{boardId}">
+                            <input type="hidden" th:field="*{difficulty}" th:value="*{difficulty}">
+                        </form>
+                    </th:block>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         style="display: none" aria-hidden="true">
+        <!--<div class="modal-dialog modal-dialog-centered" role="document">-->
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">Verifica</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p th:id="textValuate"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

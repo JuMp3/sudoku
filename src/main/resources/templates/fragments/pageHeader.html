@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<th:block th:fragment="pageHeader(title,description)">
+    <section th:replace="fragments/components/alert :: alert"></section>
+
+    <div class="content-header">
+        <h1 th:if="${!#strings.isEmpty(title)}" th:inline="text">
+            [[${title}]]
+            <small th:if="${!#strings.isEmpty(description)}" th:text="${description}"></small>
+        </h1>
+        <ol th:replace="fragments/components/breadCrumb :: breadCrumb"></ol>
+    </div>
+</th:block>
+
+</body>
+</html>
+
+
+

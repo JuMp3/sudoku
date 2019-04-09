@@ -1,0 +1,163 @@
+footer {
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    width: 100%;
+    text-align: left;
+    margin-top: 80px;
+    overflow: hidden;
+    /*color: white;*/
+    text-align: center;
+    bottom: 0;
+    position: static;
+    height: 60px;
+    line-height: 60px;
+    /*padding: 50px 60px 40px;*/
+    background-color: #f5f5f5;
+}
+
+input.fieldError, select.fieldError, textarea.fieldError {
+    border-color: #b50000 !important;
+    color: #555 !important;
+}
+
+span.fieldError {
+    color: #b50000 !important;
+}
+
+.panel-sudoku {
+    width: 80%;
+    margin: 50px auto;
+    border-color: #ccc;
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
+}
+
+.center {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.error {
+    color: #b50000 !important;
+    border-color: #b50000 !important;
+}
+
+.content-alert .alert {
+    margin: 0px 0px 10px 0px;
+}
+
+.content-alert {
+    padding: 15px;
+}
+
+.form-group {
+    padding: 0px 10px 0px 10px;
+}
+
+.box .overlay, .overlay-wrapper .overlay {
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 3px;
+}
+
+.box > .overlay, .overlay-wrapper > .overlay, .box > .loading-img, .overlay-wrapper > .loading-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.box .overlay > .fa, .overlay-wrapper .overlay > .fa {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -15px;
+    margin-top: -15px;
+    color: #000;
+    font-size: 30px;
+}
+
+.span-alert {
+    font-weight: normal;
+    /*font-style: italic;*/
+    /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;*/
+}
+
+.box-table {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.dropdown:hover > .dropdown-menu {
+    display: block;
+}
+
+.fadeCustom > in {
+    opacity: 1;
+}
+
+.fadeCustom {
+    opacity: 0;
+    -webkit-transition: opacity 0.15s linear;
+    -moz-transition: opacity 0.15s linear;
+    -o-transition: opacity 0.15s linear;
+    transition: opacity 0.15s linear;
+}
+
+.content-header {
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+.content-header > .breadcrumb {
+    font-size: 0.875em;
+}
+
+.breadcrumb .active {
+    font-style: italic;
+    font-weight: bold;
+}
+
+.table-sudoku {
+    width: 50%;
+    margin-bottom: 50px;
+}
+
+table.table-sudoku td {
+    text-align: center;
+    vertical-align: middle;
+    width: 40px;
+}
+
+table.table-sudoku td > p {
+    margin: 0;
+}
+
+table.table-sudoku td > input {
+    width: 30px;
+    border: 0;
+    box-shadow: none;
+    text-align: center;
+}
+
+table.table-sudoku td > input:disabled {
+    background-color: white !important;
+}
+
+table.table-sudoku td:first-child {
+    border-left: solid;
+}
+
+table.table-sudoku td:nth-child(3n) {
+    border-right: solid;
+}
+
+table.table-sudoku tr:first-child {
+    border-top: solid;
+}
+
+table.table-sudoku tr:nth-child(3n) td {
+    border-bottom: solid;
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+
+    <body>
+
+        <th:block layout:fragment="box(level, existHeader, existFooter)">
+            <div class="box" th:classappend="${level}">
+                <div class="overlay" id="box-overlay" style="display: none">
+                    <i class="fa fa-refresh fa-spin"></i>
+                </div>
+                <div th:if="${__${existHeader}__}" class="box-header">
+                    <th:block layout:fragment="box-header">
+                        Default box header
+                    </th:block>
+                </div>
+                <div class="box-body">
+                    <th:block layout:fragment="box-body">
+                        Default box body
+                    </th:block>
+                </div>
+                <div th:if="${__${existFooter}__}" class="box-footer">
+                    <th:block layout:fragment="box-footer">
+                        Default box footer
+                    </th:block>
+                </div>
+            </div>
+        </th:block>
+
+    </body>
+</html>

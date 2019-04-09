@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      th:lang="${#locale.language}">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+    <!--<meta name="_csrf" th:content="${_csrf.token}"/>-->
+    <!-- default header name is X-CSRF-TOKEN -->
+    <!--<meta name="_csrf_header" th:content="${_csrf.headerName}"/>-->
+
+    <!--/*  Each token will be replaced by their respective titles in the resulting page. */-->
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE" th:text="#{webapp.name}"></title>
+
+
+    <!-- Tell the browser to be responsive to screen width -->
+    <!--<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>-->
+    <meta content="width=device-width" name="viewport"/>
+
+    <div th:replace="fragments/header :: header-css"/>
+
+</head>
+
+<body>
+<div class="wrapper">
+
+    <!-- Main Header -->
+    <header th:replace="fragments/header :: header"></header>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" layout:fragment="content">
+        CONTENT
+    </div><!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
+    <footer th:replace="fragments/footer :: footer">&copy; 2019 The Template Footer</footer>
+</div><!-- ./wrapper -->
+
+<div th:include="fragments/components/modalAjaxError :: modalAjaxError">modal-ajax-error</div>
+<a href="#" class="scrollToTop" aria-label="Torna su">
+    <span class="glyphicon glyphicon glyphicon-menu-up fix-position"/>
+</a>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+        var baseUrl = /*[[@{/}]]*/ null;
+    /*]]>*/
+</script>
+</body>
+
+</html>

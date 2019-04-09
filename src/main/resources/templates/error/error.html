@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <title th:text="#{error.title}"/>
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.3.1/jquery.min.js/}"></script>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <div class="container">
+
+        <section th:if="${profile!='prod'}" class="content container">
+            <div class="starter-template">
+
+                <br><br>
+                <h1 style="text-align:center" th:inline="text">
+                    <span th:text="#{error.title}"/>
+                    <span class="headline text-red" th:text="${status}"/>
+                </h1>
+
+                <!--<h3><i class="fa fa-warning text-red"></i> <span th:text="#{error.default.message}"></span></h3>-->
+
+                <table>
+                    <tr role="row">
+                        <td role="gridcell" th:text="PATH" class="detail-label col-md-3"></td>
+                        <td role="gridcell">
+                            <div th:text="${path}"></div>
+                        </td>
+                    </tr>
+                    <tr role="row">
+                        <td role="gridcell" th:text="STATUS" class="detail-label col-md-3"></td>
+                        <td role="gridcell">
+                            <div th:text="${status}"></div>
+                        </td>
+                    </tr>
+                    <tr role="row">
+                        <td role="gridcell" th:text="ERROR" class="detail-label col-md-3"></td>
+                        <td role="gridcell">
+                            <div th:text="${error}"></div>
+                        </td>
+                    </tr>
+                    <tr role="row">
+                        <td role="gridcell" th:text="TIMESTAMP" class="detail-label col-md-3"></td>
+                        <!--<td role="gridcell" th:text="*{#temporals.format(timestamp, 'dd-MM-yyyy HH:mm:ss')}"></td>-->
+                        <td role="gridcell">
+                            <div th:text="${timestamp}"></div>
+                        </td>
+                    </tr>
+                    <tr role="row">
+                        <td role="gridcell" th:text="CAUSE" class="detail-label col-md-3"></td>
+                        <td role="gridcell">
+                            <div th:text="${cause}"></div>
+                        </td>
+                    </tr>
+                    <tr role="row">
+                        <td role="gridcell" th:text="MESSAGE" class="detail-label col-md-3"></td>
+                        <td role="gridcell">
+                            <div th:text="${message}"></div>
+                        </td>
+                    </tr>
+                    <tr role="row">
+                        <td role="gridcell" th:text="EXCEPTION" class="detail-label col-md-3"></td>
+                        <td role="gridcell">
+                            <div th:text="${exception}"></div>
+                        </td>
+                    </tr>
+                    <tr role="row">
+                        <td role="gridcell" th:text="TRACE" class="detail-label col-md-3"></td>
+                        <td role="gridcell">
+                            <div style="overflow: scroll; width: 820px;" th:text="${trace}"></div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- Content Header (Page header) -->
+        <section th:if="${profile=='prod'}" class="content-header container">
+            <h1 th:text="#{error.title}"></h1>
+        </section>
+
+        <!-- Main content -->
+        <section th:if="${profile=='prod'}" class="content">
+
+            <div class="error-page">
+                <h1 class="headline text-red" th:text="${status}">[CODE]</h1>
+                <div class="error-content">
+                    <h2><i class="fa fa-warning text-red"></i> <span th:text="#{error.default.message}"></span></h2>
+                    <div>
+                        TIMESTAMP
+                        <!--<span th:text="*{#temporals.format(timestamp, 'dd-MM-yyyy HH:mm:ss')}"></span>-->
+                        <td role="gridcell" th:text="${timestamp}"></td>
+                    </div>
+                    <div>
+                        STATUS
+                        <span th:text="${status}"></span>
+                    </div>
+                    <!--
+                    <div>
+                        ERROR
+                        <span th:text="${error}"></span>
+                    </div>
+                    <div>
+                        MESSAGE
+                        <span th:text="${message}"></span>
+                    </div>
+                    -->
+
+                    <p th:inline="text">
+                        [[#{error.default.return.message}]]
+                        <a href="#" th:href="@{/}" th:text="#{error.default.return.link}"></a>.
+                    </p>
+                </div>
+            </div><!-- /.error-page -->
+        </section><!-- /.content -->
+
+    </div>
+    <!-- /.container -->
+</div>
+
+</body>
+</html>

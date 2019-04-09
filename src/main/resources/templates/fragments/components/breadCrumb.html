@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+</head>
+<body>
+<ol th:if="${not #lists.isEmpty(#httpServletRequest.getSession().getAttribute('currentBreadCrumb'))}"
+    th:fragment="breadCrumb" class="breadcrumb">
+    <li th:each="breadCrumb : ${#httpServletRequest.getSession().getAttribute('currentBreadCrumb')}">
+        <a th:attr="aria-label=#{${breadCrumb.label}}" th:if="${!breadCrumb.currentPage}" th:href="${breadCrumb.url}"
+           th:text="#{${breadCrumb.label}}"></a>
+        <span th:if="${!breadCrumb.currentPage}">&nbsp;&gt;&nbsp;</span>
+        <span th:if="${breadCrumb.currentPage}" class="active" th:text="#{${breadCrumb.label}}"></span>
+    </li>
+</ol>
+<!--<ol th:if="${not #lists.isEmpty(sessionScope.currentBreadCrumb)}"-->
+    <!--th:fragment="breadCrumb" class="breadcrumb">-->
+    <!--<li th:each="breadCrumb : ${sessionScope.currentBreadCrumb}">-->
+        <!--<a th:attr="aria-label=#{${breadCrumb.label}}" th:unless="${breadCrumb.isCurrent}" th:href="${breadCrumb.queryString}" th:text="#{${breadCrumb.label}}"></a>-->
+        <!--<span th:if="${breadCrumb.isCurrent}" class="active" th:text="#{${breadCrumb.label}}"></span>-->
+    <!--</li>-->
+<!--</ol>-->
+</body>
+</html>
+
+
+
