@@ -1,5 +1,6 @@
 var SIZE = 9;
 var EMPTY = 0;
+var numTot = SIZE * SIZE;
 
 $(document).ready(function () {
 
@@ -129,7 +130,7 @@ function helpMe() {
 
 function evaluateHelp(sudokuTable) {
 
-    var x, y = 0;
+    var x, y = 0, cnt = 0;
 
     $.each(sudokuTable.rows, function () {
         x = 0;
@@ -139,11 +140,18 @@ function evaluateHelp(sudokuTable) {
             if (valCell != null && valCell != '' && valCell != EMPTY) {
                 $('#' + x + '_' + y).val(valCell);
                 $('#' + x + '_' + y).prop('disabled', true);
+                cnt++;
             }
             x++;
         });
         y++;
     });
+
+    //alla fine controllo se ho completato tutto il puzzle, e nel caso disabilito i tasti
+    if (cnt == numTot) {
+        $('#divBtnSolve').hide();
+        $('#divBtnFnc').hide();
+    }
 }
 
 function customReset() {

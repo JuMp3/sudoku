@@ -56,7 +56,9 @@ public class SudokuRestController extends BaseController {
         int[][] boardSolved = sudokuGenerator.getCloneBoard(sudokuTable.getDifficulty(), sudokuTable.getBoardId());
         sudokuEngine.solve(boardSolved);
 
-        sudokuUtil.helpMe(board, boardSolved);
+        if (!sudokuUtil.isComplete(sudokuTable)) {
+            sudokuUtil.helpMe(board, boardSolved);
+        }
 
         SudokuTable sudokuTableOut = sudokuUtil.getSudokuTable(board);
 
