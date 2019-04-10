@@ -10,12 +10,13 @@
 	</parent>
 	<groupId>it.jump3</groupId>
 	<artifactId>sudoku</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>sudoku</name>
 	<description>Sudoku in Spring Boot</description>
+	<packaging>jar</packaging>
 
 	<properties>
-		<java.version>12</java.version>
+		<java.version>1.8</java.version>
 		<apache.commons.version>3.8.1</apache.commons.version>
 		<thymeleaf.layout.version>2.3.0</thymeleaf.layout.version>
 	</properties>
@@ -119,7 +120,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>${artifactId}</finalName>
+		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -128,11 +129,76 @@
 			<!--<plugin>-->
 				<!--<groupId>org.apache.maven.plugins</groupId>-->
 				<!--<artifactId>maven-compiler-plugin</artifactId>-->
-				<!--<version>3.7.0</version>-->
+				<!--<version>3.8.0</version>-->
 				<!--<configuration>-->
 					<!--<release>12</release>-->
+					<!--<compilerArgs>&#45;&#45;enable-preview</compilerArgs>-->
 				<!--</configuration>-->
 			<!--</plugin>-->
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.26.0</version>
+				<configuration>
+					<dockerHost>http://localhost:2375</dockerHost>
+					<verbose>true</verbose>
+					<registry>registry.hub.docker.com/jump3</registry>
+					<images>
+						<image>
+							<name>${project.name}:${project.version}</name>
+							<alias>${project.name}</alias>
+							<build>
+								<!--<dockerFile>Dockerfile</dockerFile>-->
+								<from>openjdk:8-jre-alpine</from>
+								<maintainer>Giampiero Poggi</maintainer>
+								<ports>
+									<port>8091</port>
+								</ports>
+								<volumes>
+									<volume>/docker_volume</volume>
+								</volumes>
+								<entryPoint>
+									<exec>
+										<arg>java</arg>
+										<arg>-jar</arg>
+										<arg>-Xmx96m</arg>
+										<arg>-Xss512k</arg>
+										<arg>${project.artifactId}.jar</arg>
+									</exec>
+								</entryPoint>
+								<assembly>
+									<mode>dir</mode>
+									<targetDir>/</targetDir>
+									<descriptorRef>artifact</descriptorRef>
+								</assembly>
+							</build>
+						</image>
+					</images>
+					<authConfig>
+						<username>jump3</username>
+						<password>xxxxx</password>
+					</authConfig>
+				</configuration>
+				<executions>
+					<execution>
+						<id>start</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>stop</goal>
+							<goal>build</goal>
+							<goal>start</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>push</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>stop</goal>
+							<goal>push</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 

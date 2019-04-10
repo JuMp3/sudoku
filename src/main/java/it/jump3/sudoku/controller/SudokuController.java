@@ -30,7 +30,7 @@ public class SudokuController extends BaseController {
     @Autowired
     private SudokuGenerator sudokuGenerator;
 
-    private static final String HOME_PAGE = "/home";
+    private static final String HOME_PAGE = "home";
 
     @GetMapping
     public String initSudoku(Model model, Locale locale) {
