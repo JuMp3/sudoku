@@ -53,7 +53,7 @@ public class SudokuController extends BaseController {
     }
 
     private String initSudoku(Model model, DifficultyEnum difficultyEnum) {
-        int boardId = sudokuUtil.getRandomNumber(0, SudokuGenerator.NUM_BOARDS);
+        int boardId = sudokuUtil.getRandomNumber(0, sudokuGenerator.getNumBoard());
         SudokuTable sudokuTable = sudokuUtil.getSudokuTable(sudokuGenerator.getBoard(difficultyEnum, boardId));
         sudokuTable.setDifficulty(difficultyEnum);
         sudokuTable.setBoardId(boardId);

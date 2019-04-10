@@ -4,6 +4,7 @@ import it.jump3.sudoku.model.DifficultyEnum;
 import it.jump3.sudoku.util.SudokuUtil;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -19,8 +20,10 @@ public class SudokuGenerator {
     @Autowired
     private SudokuUtil sudokuUtil;
 
+    @Value(value = "${sudoku.num_boards}")
+    private int numBoard;
+
     private Map<DifficultyEnum, List<int[][]>> boardMap;
-    public static final int NUM_BOARDS = 12;
 
     int[][] board;
 
@@ -34,7 +37,7 @@ public class SudokuGenerator {
 
         for (DifficultyEnum difficultyEnum : DifficultyEnum.values()) {
             List<int[][]> boardList = new ArrayList<>();
-            for (int cnt = 0; cnt < NUM_BOARDS; cnt++) {
+            for (int cnt = 0; cnt < getNumBoard(); cnt++) {
                 board = new int[SudokuEngine.SIZE][SudokuEngine.SIZE];
                 int difficulty = sudokuUtil.getRandomNumber(difficultyEnum.getMinHoles() + 1, difficultyEnum.getMaxHoles() + 1);
                 nextBoard(difficulty);
@@ -180,13 +183,13 @@ public class SudokuGenerator {
 
     public int[][] getBoard(DifficultyEnum difficultyEnum, int i) {
 
-        assert i < NUM_BOARDS;
+        assert i < getNumBoard();
         return boardMap.get(difficultyEnum).get(i);
     }
 
     public int[][] getCloneBoard(DifficultyEnum difficultyEnum, int i) {
 
-        assert i < NUM_BOARDS;
+        assert i < getNumBoard();
         return sudokuUtil.clone(boardMap.get(difficultyEnum).get(i));
     }
 }

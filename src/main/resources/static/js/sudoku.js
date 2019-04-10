@@ -15,8 +15,15 @@ $(document).ready(function () {
     sudokuAjaxOut.msg = null;
     evaluateSolve(sudokuAjaxOut);
 
-    $('#sudokuSubmit').click(function () {
-        validateSudoku();
+    $('#sudokuSubmit').click(function (e) {
+
+        var validate = $('#sudokuForm').validate();
+        var errors = validate.numberOfInvalids();
+        if (errors != null && errors == 0) {
+            validateSudoku();
+        } else {
+            e.preventDefault();
+        }
     });
 
     $('#sudokuHelp').click(function () {
@@ -127,7 +134,7 @@ function evaluateHelp(sudokuTable) {
     $.each(sudokuTable.rows, function () {
         x = 0;
         $.each(this.columns, function () {
-            console.log("x:" + x + ", y: " + y + ", value old:" + $('#' + x + '_' + y).val() + ", value new: " + this.cell);
+            //console.log("x:" + x + ", y: " + y + ", value old:" + $('#' + x + '_' + y).val() + ", value new: " + this.cell);
             var valCell = this.cell;
             if (valCell != null && valCell != '' && valCell != EMPTY) {
                 $('#' + x + '_' + y).val(valCell);
