@@ -1,6 +1,6 @@
 package it.jump3.sudoku.view;
 
-import it.jump3.sudoku.control.SaleTaxeCalculator;
+import it.jump3.sudoku.control.SalesTaxesCalculator;
 import it.jump3.sudoku.model.OutputItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class ViewUtil {
 
     @Autowired
-    private SaleTaxeCalculator saleTaxeCalculator;
+    private SalesTaxesCalculator salesTaxesCalculator;
 
     private static final String SPACE = " ";
     private static final String PRICE_SEPARATOR = ": ";
@@ -35,7 +35,7 @@ public class ViewUtil {
                 sb.append(getPriceAsString(item.getPrice()));
                 if (item.getQuantity() > 1) {
                     sb.append(" (");
-                    sb.append(getPriceAsString(saleTaxeCalculator.divide(item.getPrice(), item.getQuantity())));
+                    sb.append(getPriceAsString(salesTaxesCalculator.divide(item.getPrice(), item.getQuantity())));
                     sb.append(" each)");
                 }
                 return sb.toString();

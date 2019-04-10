@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class SaleTaxeCalculator {
+public class SalesTaxesCalculator {
 
     private static final int PLACES = 2;
 

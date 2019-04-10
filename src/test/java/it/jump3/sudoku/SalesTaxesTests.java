@@ -1,6 +1,6 @@
 package it.jump3.sudoku;
 
-import it.jump3.sudoku.control.SaleTaxeCalculator;
+import it.jump3.sudoku.control.SalesTaxesCalculator;
 import it.jump3.sudoku.model.Item;
 import it.jump3.sudoku.model.ItemType;
 import it.jump3.sudoku.model.OutputItem;
@@ -19,10 +19,10 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class SaleTaxeTests {
+public class SalesTaxesTests {
 
 	@Autowired
-	private SaleTaxeCalculator saleTaxeCalculator;
+	private SalesTaxesCalculator salesTaxesCalculator;
 
 	@Autowired
 	private ViewUtil viewUtil;
@@ -126,7 +126,7 @@ public class SaleTaxeTests {
 	}
 
 	private void printResult(List<Item> itemList) {
-		OutputItem outputItem = saleTaxeCalculator.computesItemList(itemList);
+		OutputItem outputItem = salesTaxesCalculator.computesItemList(itemList);
 		System.out.println(viewUtil.getReceiptAsString(outputItem));
 	}
 
