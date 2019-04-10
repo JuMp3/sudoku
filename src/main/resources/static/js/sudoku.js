@@ -147,10 +147,9 @@ function evaluateHelp(sudokuTable) {
         y++;
     });
 
-    //alla fine controllo se ho completato tutto il puzzle, e nel caso disabilito i tasti
+    //alla fine controllo se ho completato tutto il puzzle, e nel caso disabilito il tasto
     if (cnt == numTot) {
-        $('#divBtnSolve').hide();
-        $('#divBtnFnc').hide();
+        $('#sudokuHelp').prop('disabled', true);
     }
 }
 

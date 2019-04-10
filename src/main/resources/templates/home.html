@@ -46,7 +46,7 @@
                                 <span class="error center" th:if="${#fields.hasErrors('errMsg')}"
                                       th:errors="*{errMsg}">Completare tutti i campi!</span>
                             </div>
-                            <div th:if="${!solved}" class="row" th:id="divBtnFnc">
+                            <div th:if="${!solved}" class="row">
                                 <div class="col-sm-4 col-sm-offset-3 center">
                                     <button type="button" th:id="sudokuReset" class="form-control btn btn-secondary">
                                         <span>Reset</span>
@@ -64,7 +64,7 @@
                                 </div>
                             </div>
                             <br>
-                            <div th:if="${!solved}" class="row" th:id="divBtnSolve">
+                            <div th:if="${!solved}" class="row">
                                 <div class="col-sm-12 col-sm-offset-3 center">
                                     <button type="submit" th:id="sudokuSolve" class="form-control btn btn-success">
                                         <span th:text="#{btnSolve}"/>
