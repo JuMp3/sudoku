@@ -21,7 +21,7 @@
             <div class="panel panel-sudoku">
                 <div layout:insert="~{fragments/components/box :: box('box-table', true, false)}" th:remove="tag">
                     <th:block layout:fragment="box-header">
-                        <h2 class="box-title with-margin text-lg-center" th:text="#{webapp.name}"
+                        <h2 class="box-title with-margin text-sm-center" th:text="#{webapp.name}"
                             style="padding: 20px;"/>
                     </th:block>
                     <th:block layout:fragment="box-body">
@@ -35,7 +35,8 @@
                                         <!--<p th:if="${column.cell != 0}" th:text="${column.cell}" th:value="${column.cell}"-->
                                            <!--th:id="${x.index + '_' + y.index}"></p>-->
                                         <input th:if="${column.cell != 0}" th:id="${x.index + '_' + y.index}"
-                                               maxlength="1" size="1" min="1" max="9" th:value="${column.cell}" disabled/>
+                                               maxlength="1" size="1" min="1" max="9" th:value="${column.cell}"
+                                               th:disabled="${column.disabled}" th:readonly="${column.disabled}"/>
                                         <input th:if="${column.cell == 0}" th:id="${x.index + '_' + y.index}"
                                                maxlength="1" size="1" min="1" max="9"/>
                                     </td>

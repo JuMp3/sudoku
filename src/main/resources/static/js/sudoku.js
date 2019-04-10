@@ -75,6 +75,7 @@ function getSudokuTable() {
         columns = [];
         for (x = 0; x < SIZE; x++) {
             var value = $('#' + x + '_' + y).val();
+            var disabled = $('#' + x + '_' + y).prop('disabled');
             if (value == '' || value == null) {
                 value = $('#' + x + '_' + y).text();
                 if (value == '' || value == null) {
@@ -82,7 +83,8 @@ function getSudokuTable() {
                 }
             }
             var cell = {
-                "cell": value
+                "cell": value,
+                "disabled" : disabled
             };
             columns.push(cell);
         }
@@ -139,7 +141,7 @@ function evaluateHelp(sudokuTable) {
             var valCell = this.cell;
             if (valCell != null && valCell != '' && valCell != EMPTY) {
                 $('#' + x + '_' + y).val(valCell);
-                $('#' + x + '_' + y).prop('disabled', true);
+                $('#' + x + '_' + y).prop('disabled', this.disabled);
                 cnt++;
             }
             x++;

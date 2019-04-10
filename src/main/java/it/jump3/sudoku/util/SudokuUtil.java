@@ -22,6 +22,8 @@ public class SudokuUtil {
             for (int j = 0; j < SudokuEngine.SIZE; j++) {
                 Column column = new Column();
                 column.setCell(board[i][j]);
+                column.setCorrect(true);
+                column.setDisabled(true);
                 row.getColumns().add(column);
             }
             sudokuTable.getRows().add(row);
@@ -125,6 +127,27 @@ public class SudokuUtil {
             int j = getRandomNumber(0, SudokuEngine.SIZE);
             if (boardInput[i][j] == SudokuEngine.EMPTY && boardSolved[i][j] != SudokuEngine.EMPTY) {
                 boardInput[i][j] = boardSolved[i][j];
+                helped = true;
+            }
+        }
+    }
+
+    public void helpMe(SudokuTable sudokuTableInput, SudokuTable sudokuTableSolved) {
+
+        boolean helped = false;
+
+        while (!helped) {
+
+            int i = getRandomNumber(0, SudokuEngine.SIZE);
+            int j = getRandomNumber(0, SudokuEngine.SIZE);
+
+            if (sudokuTableInput.getRows().get(i).getColumns().get(j).getCell() == SudokuEngine.EMPTY &&
+                    sudokuTableSolved.getRows().get(i).getColumns().get(j).getCell() != SudokuEngine.EMPTY) {
+
+                Column column = sudokuTableInput.getRows().get(i).getColumns().get(j);
+                column.setCell(sudokuTableSolved.getRows().get(i).getColumns().get(j).getCell());
+                column.setDisabled(true);
+                column.setCorrect(true);
                 helped = true;
             }
         }

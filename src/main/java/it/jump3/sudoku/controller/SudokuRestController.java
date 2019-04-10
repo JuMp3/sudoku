@@ -52,16 +52,15 @@ public class SudokuRestController extends BaseController {
     @PostMapping(value = "/helpMe", produces = "application/json")
     public ResponseEntity<SudokuTable> helpMe(@RequestBody SudokuTable sudokuTable) {
 
-        int[][] board = sudokuUtil.getMatrix(sudokuTable);
+        //int[][] board = sudokuUtil.getMatrix(sudokuTable);
         int[][] boardSolved = sudokuGenerator.getCloneBoard(sudokuTable.getDifficulty(), sudokuTable.getBoardId());
         sudokuEngine.solve(boardSolved);
 
         if (!sudokuUtil.isComplete(sudokuTable)) {
-            sudokuUtil.helpMe(board, boardSolved);
+            SudokuTable sudokuTableSolved = sudokuUtil.getSudokuTable(boardSolved);
+            sudokuUtil.helpMe(sudokuTable, sudokuTableSolved);
         }
 
-        SudokuTable sudokuTableOut = sudokuUtil.getSudokuTable(board);
-
-        return new ResponseEntity<>(sudokuTableOut, HttpStatus.OK);
+        return new ResponseEntity<>(sudokuTable, HttpStatus.OK);
     }
 }
