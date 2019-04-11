@@ -16,7 +16,7 @@ $(document).ready(function () {
     sudokuAjaxOut.msg = null;
     evaluateSolve(sudokuAjaxOut);
 
-    $('#sudokuSubmit').click(function (e) {
+    $('#sudokuSubmit,#sudokuSubmitImg').click(function (e) {
 
         var validate = $('#sudokuForm').validate();
         var errors = validate.numberOfInvalids();
@@ -27,14 +27,41 @@ $(document).ready(function () {
         }
     });
 
-    $('#sudokuHelp').click(function () {
+    $('#sudokuHelp,#sudokuHelpImg').click(function () {
         helpMe();
     });
 
-    $('#sudokuReset').click(function () {
+    $('#sudokuReset,#sudokuResetImg').click(function () {
         customReset();
     });
+
+    $('#switchStyle').change(function() {
+        changeStyle(this.checked);
+    });
 });
+
+function changeStyle(newStyle) {
+
+    if (newStyle) {
+        $('#sudokuHelp').hide();
+        $('#sudokuHelpImg').show();
+        $('#sudokuSolve').hide();
+        $('#sudokuSolveImg').show();
+        $('#sudokuSubmit').hide();
+        $('#sudokuSubmitImg').show();
+        $('#sudokuReset').hide();
+        $('#sudokuResetImg').show();
+    } else {
+        $('#sudokuHelp').show();
+        $('#sudokuHelpImg').hide();
+        $('#sudokuSolve').show();
+        $('#sudokuSolveImg').hide();
+        $('#sudokuSubmit').show();
+        $('#sudokuSubmitImg').hide();
+        $('#sudokuReset').show();
+        $('#sudokuResetImg').hide();
+    }
+}
 
 function evaluateSolve(sudokuAjaxOut) {
 
@@ -58,7 +85,9 @@ function evaluateSolve(sudokuAjaxOut) {
 
         if (checkSolved === true) {
             $('#sudokuSolve').prop('disabled', true);
+            $('#sudokuSolveImg').prop('disabled', true);
             $('#sudokuHelp').prop('disabled', true);
+            $('#sudokuHelpImg').prop('disabled', true);
         }
 
         $('#myModal').modal('show');
@@ -152,11 +181,14 @@ function evaluateHelp(sudokuTable) {
     //alla fine controllo se ho completato tutto il puzzle, e nel caso disabilito il tasto
     if (cnt == numTot) {
         $('#sudokuHelp').prop('disabled', true);
+        $('#sudokuHelpImg').prop('disabled', true);
     }
 }
 
 function customReset() {
     $('input').not('[readonly],[disabled],:hidden,:button').val('');
     $('#sudokuSolve').prop('disabled', false);
+    $('#sudokuSolveImg').prop('disabled', false);
     $('#sudokuHelp').prop('disabled', false);
+    $('#sudokuHelpImg').prop('disabled', false);
 }

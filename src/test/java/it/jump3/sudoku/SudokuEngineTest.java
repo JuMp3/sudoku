@@ -42,7 +42,7 @@ public class SudokuEngineTest {
 
     @Test
     public void dancingLinksAlgorithmTest() {
-        dancingLinksAlgorithm.run();
+        dancingLinksAlgorithm.solve(GRID_TO_SOLVE);
     }
 
     @Test

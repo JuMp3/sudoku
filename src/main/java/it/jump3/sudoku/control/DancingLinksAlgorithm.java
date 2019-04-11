@@ -27,11 +27,7 @@ public class DancingLinksAlgorithm {
             {0, 9, 0, 0, 0, 0, 4, 0, 0}
     };
 
-    public void run() {
-        solve(board);
-    }
-
-    private void solve(int[][] board) {
+    public void solve(int[][] board) {
         boolean[][] cover = initializeExactCoverBoard(board);
         DancingLinks dlx = new DancingLinks(cover);
         dlx.runSolver();

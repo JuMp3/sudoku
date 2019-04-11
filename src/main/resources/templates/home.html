@@ -27,13 +27,11 @@
                     <th:block layout:fragment="box-body">
 
                         <form th:id="sudokuForm" th:action="@{/sudoku/solve}" th:object="${sudokuTable}" method="post" role="form">
-                        <!--<form th:id="sudokuForm" th:object="${sudokuTable}" role="form">-->
+                            <!--<form th:id="sudokuForm" th:object="${sudokuTable}" role="form">-->
                             <table role="grid" class="table table-bordered table-sudoku center" cellspacing="0">
                                 <tbody>
                                 <tr th:each="row, y : *{rows}" th:field="*{rows}">
                                     <td role="gridcell" th:each="column, x : ${row.columns}">
-                                        <!--<p th:if="${column.cell != 0}" th:text="${column.cell}" th:value="${column.cell}"-->
-                                           <!--th:id="${x.index + '_' + y.index}"></p>-->
                                         <input th:if="${column.cell != 0}" th:id="${x.index + '_' + y.index}"
                                                maxlength="1" size="1" min="1" max="9" th:value="${column.cell}"
                                                th:disabled="${column.disabled}" th:readonly="${column.disabled}"/>
@@ -49,27 +47,63 @@
                             </div>
                             <div th:if="${!solved}" class="row">
                                 <div class="col-sm-4 col-sm-offset-3 center">
-                                    <button type="button" th:id="sudokuReset" class="form-control btn btn-secondary">
+                                    <button type="button" th:id="sudokuReset" class="form-control btn btn-primary">
+                                        <i class="fas fa-toilet" aria-hidden="true"></i>
                                         <span>Reset</span>
                                     </button>
-                                </div>
-                                <div class="col-sm-4 col-sm-offset-3 center">
-                                    <button type="button" th:id="sudokuSubmit" class="form-control btn btn-info">
-                                        <span th:text="#{btnValuate}"/>
+                                    <button type="button" style="border: 0; background: transparent; display: none" th:id="sudokuResetImg">
+                                        <img th:src="@{/img/reset.png}" alt="Reset" title="Reset"/>
                                     </button>
                                 </div>
                                 <div class="col-sm-4 col-sm-offset-3 center">
-                                    <button type="button" th:id="sudokuHelp" class="form-control btn btn-primary">
+                                    <button type="button" th:id="sudokuSubmit" class="form-control btn btn-primary">
+                                        <i class="fas fa-user-check" aria-hidden="true"></i>
+                                        <span th:text="#{btnValuate}"/>
+                                    </button>
+                                    <button type="button" style="border: 0; background: transparent; display: none" th:id="sudokuSubmitImg">
+                                        <img th:src="@{/img/check.png}" th:alt-title="#{btnValuate}"/>
+                                    </button>
+                                </div>
+                                <div class="col-sm-4 col-sm-offset-3 center">
+                                    <button type="button" th:id="sudokuHelp" class="form-control btn btn-primary"
+                                            th:alt-title="#{btnHelp}">
+                                        <i class="fas fa-life-ring" aria-hidden="true"></i>
                                         <span th:text="#{btnHelp}"/>
+                                    </button>
+                                    <button type="button" style="border: 0; background: transparent; display: none" th:id="sudokuHelpImg">
+                                        <img th:src="@{/img/help_me.png}" th:alt-title="#{btnHelp}"/>
                                     </button>
                                 </div>
                             </div>
                             <br>
                             <div th:if="${!solved}" class="row">
-                                <div class="col-sm-12 col-sm-offset-3 center">
-                                    <button type="submit" th:id="sudokuSolve" class="form-control btn btn-success">
+                                <div class="col-sm-10 col-sm-offset-3 center">
+                                    <button type="submit" th:id="sudokuSolve" class="form-control btn btn-success"
+                                            th:alt-title="#{btnSolve}">
+                                        <i class="fas fa-edit"></i>
                                         <span th:text="#{btnSolve}"/>
                                     </button>
+                                    <button type="submit" style="border: 0; background: transparent; display: none" th:id="sudokuSolveImg">
+                                        <img th:src="@{/img/solve.png}" th:alt-title="#{btnSolve}"/>
+                                    </button>
+                                </div>
+                            </div>
+                            <!--<div th:if="${!solved}" class="row">-->
+                                <!--<div class="col-sm-12 col-sm-offset-3 center">-->
+                                    <!--<br>-->
+                                    <!--<label class="form-switch">-->
+                                        <!--<input type="checkbox">-->
+                                        <!--<i></i>-->
+                                        <!--<span th:text="#{btnStyle}"/>-->
+                                    <!--</label>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <div th:if="${!solved}" class="row">
+                                <div class="col-sm-12 col-sm-offset-3 center toggleWrapper">
+                                    <br>
+                                    <input type="checkbox" id="switchStyle" name="switchStyle" class="mobileToggle">
+                                    <label for="switchStyle" style="vertical-align: middle;display: inline-block;"></label>
+                                    &nbsp;<span th:text="#{btnStyle}" style="vertical-align: middle;display: inline-block;margin-top: -10px;"/>
                                 </div>
                             </div>
                             <br/>

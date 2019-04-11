@@ -87,7 +87,8 @@ span.fieldError {
 
 .box-table {
     margin: 0 auto;
-    width: 80%;
+    /*width: 80%;*/
+    padding: 50px;
 }
 
 .dropdown:hover > .dropdown-menu {
@@ -160,4 +161,8 @@ table.table-sudoku tr:first-child {
 
 table.table-sudoku tr:nth-child(3n) td {
     border-bottom: solid;
+}
+
+img {
+    max-width:100px;
 }
