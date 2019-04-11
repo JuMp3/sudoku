@@ -28,8 +28,7 @@ public class DancingLinksAlgorithm {
     };
 
     public void run() {
-        DancingLinksAlgorithm solver = new DancingLinksAlgorithm();
-        solver.solve(board);
+        solve(board);
     }
 
     private void solve(int[][] board) {
