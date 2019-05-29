@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>it.jump3</groupId>
 	<artifactId>sudoku</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.2</version>
 	<name>sudoku</name>
 	<description>Sudoku in Spring Boot</description>
 	<packaging>jar</packaging>
