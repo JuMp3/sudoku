@@ -4,6 +4,8 @@ MAINTAINER Giampiero Poggi
 ARG MAVEN_VERSION=3.5.4
 EXPOSE 8091
 
+USER root
+
 # Install required tools
 # which: otherwise 'mvn version' prints '/usr/share/maven/bin/mvn: line 93: which: command not found'
 RUN yum update -y && \
