@@ -19,7 +19,7 @@
 		<java.version>1.8</java.version>
 		<apache.commons.version>3.8.1</apache.commons.version>
 		<thymeleaf.layout.version>2.3.0</thymeleaf.layout.version>
-		<start-class>it.jump3.sudoku.Application</start-class>
+		<!--<start-class>it.jump3.sudoku.Application</start-class>-->
 	</properties>
 
 	<dependencies>
