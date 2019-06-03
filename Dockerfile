@@ -28,7 +28,7 @@ COPY pom.xml /usr/share/src-sudoku/pom.xml
 
 RUN mkdir -p /Logs
 RUN cd /usr/share/src-sudoku && \
-    mvn clean install -Dmaven.test.skip=true
+    mvn clean package -Dmaven.test.skip=true
 
 VOLUME ["/Logs"]
 
