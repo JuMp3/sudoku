@@ -23,8 +23,11 @@ ENV maven.home $M2_HOME
 ENV M2 $M2_HOME/bin
 ENV PATH $M2:$PATH
 
+COPY ./src/ /usr/share/src-sudoku
+
 RUN mkdir -p /Logs
-RUN mvn clean install -Dmaven.test.skip=true
+RUN cd /usr/share/src-sudoku && \
+    mvn clean install -Dmaven.test.skip=true
 
 VOLUME ["/Logs"]
 
