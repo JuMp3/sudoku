@@ -34,4 +34,4 @@ VOLUME ["/Logs"]
 
 USER 1001
 
-CMD ["java","-jar","-Xmx96m","-Xss512k","sudoku.jar"]
+CMD ["java","-jar","-Xmx96m","-Xss512k","/usr/share/src-sudoku/target/sudoku.jar"]
