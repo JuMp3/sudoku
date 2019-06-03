@@ -24,6 +24,7 @@ ENV M2 $M2_HOME/bin
 ENV PATH $M2:$PATH
 
 COPY src /usr/share/src-sudoku
+COPY pom.xml /usr/share/src-sudoku/pom.xml
 
 RUN mkdir -p /Logs
 RUN cd /usr/share/src-sudoku && \
