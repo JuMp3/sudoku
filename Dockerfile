@@ -34,4 +34,4 @@ VOLUME ["/Logs"]
 
 USER 1001
 
-CMD ["java","-jar","-Xmx96m","-Xss512k","/usr/share/src-sudoku/target/sudoku.jar"]
+ENTRYPOINT ["java","java.security.egd=file:/dev/./urandom","-jar","-Xmx96m","-Xss512k","/usr/share/src-sudoku/target/sudoku.jar"]
