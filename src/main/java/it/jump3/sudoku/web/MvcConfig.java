@@ -1,7 +1,7 @@
 package it.jump3.sudoku.web;
 
 import lombok.extern.slf4j.Slf4j;
-import nz.net.ultraq.thymeleaf.LayoutDialect;
+import nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
