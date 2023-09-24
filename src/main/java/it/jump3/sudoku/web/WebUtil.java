@@ -1,6 +1,8 @@
 package it.jump3.sudoku.web;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -8,7 +10,6 @@ import org.springframework.boot.web.error.ErrorAttributeOptions;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -39,7 +40,7 @@ public class WebUtil {
     public ModelAndView getErrorModelAndView(HttpServletRequest req, HttpServletResponse res, WebRequest webRequest, Exception e) {
         ModelAndView mav = new ModelAndView();
 
-        if (StringUtils.isEmpty(e.getCause())) {
+        if (ObjectUtils.isEmpty(e.getCause())) {
             mav.addObject("cause", "No cause available");
         } else {
             mav.addObject("cause", ExceptionUtils.getRootCause(e));

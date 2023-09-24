@@ -19,6 +19,8 @@
 	<packaging>jar</packaging>
 
 	<properties>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
 		<java.version>17</java.version>
 		<apache.commons.version>3.13.0</apache.commons.version>
 		<thymeleaf.layout.version>2.3.0</thymeleaf.layout.version>
@@ -139,15 +141,11 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<!--<plugin>-->
-				<!--<groupId>org.apache.maven.plugins</groupId>-->
-				<!--<artifactId>maven-compiler-plugin</artifactId>-->
-				<!--<version>3.8.0</version>-->
-				<!--<configuration>-->
-					<!--<release>12</release>-->
-					<!--<compilerArgs>&#45;&#45;enable-preview</compilerArgs>-->
-				<!--</configuration>-->
-			<!--</plugin>-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.11.0</version>
+			</plugin>
 			<!--<plugin>-->
 				<!--<groupId>io.fabric8</groupId>-->
 				<!--<artifactId>docker-maven-plugin</artifactId>-->
