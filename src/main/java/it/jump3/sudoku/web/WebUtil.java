@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.error.ErrorAttributeOptions;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
@@ -11,8 +12,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 /**
@@ -49,7 +50,7 @@ public class WebUtil {
         mav.addObject("appVersion", appVersion);
         mav.addObject("profile", profile);
 
-        if (isAjax(req)) {
+        if (Boolean.TRUE.equals(isAjax(req))) {
             mav.setViewName("fragments/ajax/error");
         } else {
             mav.setViewName(DEFAULT_ERROR_VIEW);
@@ -71,7 +72,7 @@ public class WebUtil {
     }
 
     private Map<String, Object> getErrorAttributes(WebRequest webRequest, boolean includeStackTrace) {
-        return errorAttributes.getErrorAttributes(webRequest, includeStackTrace);
+        return errorAttributes.getErrorAttributes(webRequest, ErrorAttributeOptions.of(ErrorAttributeOptions.Include.STACK_TRACE));
     }
 
     public static Boolean isAjax(HttpServletRequest request) {
